@@ -19,3 +19,31 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+app/
+├── public/
+│   ├── index.html          # Entry HTML file
+│   ├── favicon.ico         # Favicon for the app
+│   └── assets/             # Static assets like images, icons, etc.
+│
+├── src/
+│   ├── assets/             # Static assets like images, fonts, etc.
+│   ├── components/        # Reusable UI components
+│   ├── pages/             # Page components representing different routes
+│   ├── hooks/             # Custom React hooks
+│   ├── context/           # React Contexts for state management
+│   ├── services/          # API calls and external services
+│   ├── utils/             # Utility functions
+│   ├── styles/            # Global and component-specific styles
+│   ├── App.js             # Main App component
+│   ├── index.js           # Entry point for React
+│   ├── routes.js          # Routing configuration
+│   └── setupTests.js      # Test setup file
+│
+├── .gitignore              # Git ignore file
+├── package.json            # Project metadata and dependencies
+├── README.md               # Project documentation
+└── .eslintrc.js            # ESLint configuration
+└── tsconfig.json           # TypeScript configuration (if using TypeScript)
+└── vite.config.js          # Vite configuration (if using Vite)
