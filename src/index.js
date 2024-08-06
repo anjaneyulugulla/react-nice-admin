@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import NoFound from './components/NoFound';
+import BlankPage from './components/BlankPage';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -17,6 +19,8 @@ root.render(
         <Route path="*" element={<Login/>}></Route>
         <Route path="/" element={<Login/>}></Route>
         <Route path="/dashboard" element={<Dashboard/>}></Route>
+        <Route path="/404" element={<NoFound/>}></Route>
+        <Route path="/blank-page" element={<BlankPage/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
