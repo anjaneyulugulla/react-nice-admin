@@ -2,6 +2,7 @@ import React,{useEffect,useRef} from "react";
 
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
+import DataTableComponent2 from "./DataTableComponent2";
 import DataTableComponent from "./DataTableComponent";
 
 const Table = () => {        
