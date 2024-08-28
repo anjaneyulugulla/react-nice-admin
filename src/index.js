@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import NoFound from './components/NoFound';
 import BlankPage from './components/BlankPage';
 import Table from './components/Table';
+import ChangePassword from './components/ChangePassword';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -23,6 +24,7 @@ root.render(
         <Route path="/404" element={<NoFound/>}></Route>
         <Route path="/blank-page" element={<BlankPage/>}></Route>
         <Route path="/table" element={<Table/>}></Route>
+        <Route path="/change-password" element={<ChangePassword/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

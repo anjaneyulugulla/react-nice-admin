@@ -1218,11 +1218,18 @@ h6 {
   font-size: 14px;
   transition: all 0.3s;
   border-top: 1px solid #cddfff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  z-index: 1000;
 }
 
 .footer .copyright {
   text-align: center;
   color: #012970;
+  padding-right: 250px;
 }
 
 .footer .credits {

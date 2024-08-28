@@ -1,9 +1,9 @@
-import React,{useEffect,useRef} from "react";
+import React from "react";
 
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
-import DataTableComponent2 from "./DataTableComponent2";
-import DataTableComponent from "./DataTableComponent";
+// import DataTableComponent2 from "./DataTableComponent2";
+// import DataTableComponent from "./DataTableComponent";
 
 const Table = () => {        
     return(
@@ -26,7 +26,7 @@ const Table = () => {
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Table</h5>
-                                    <DataTableComponent/>
+                                    {/* <DataTableComponent/> */}
                                 </div>
                             </div>
                         </div>

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-dt';
-import 'datatables.net-dt/css/jquery.dataTables.css';
+// import 'datatables.net-dt/css/jquery.dataTables.css';
 
 
 const DataTableComponent = () => {
