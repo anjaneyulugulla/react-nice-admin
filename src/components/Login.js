@@ -1,7 +1,46 @@
-import React from "react";
+import React,{ useState,useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    return(
+
+const navigate = useNavigate();  
+const [formData,setFormData] = useState({
+    username : '',
+    password : ''
+});
+
+const [errors,setErrors] = useState({});
+
+const handleChange = (e) => {
+    const { name , value } = e.target;
+    setFormData({
+        ...formData,
+        [name]: value
+    });
+};
+const validate = () => {
+    const newErrors = {};
+
+    if(!formData.username) {
+        newErrors.username = 'Please enter your username.';
+    }
+    if(!formData.password) {
+        newErrors.password = 'Please enter your password.';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+};
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    if(validate()) {
+        console.log('From data submitted:',formData);
+        navigate('/dashboard');
+    }
+};
+return(
 <div>        
     <main>
         <div class="container">
@@ -11,8 +50,8 @@ const Login = () => {
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="d-flex justify-content-center py-4">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="/assets/img/logo.png" alt=""/>
-                                    <span class="d-none d-lg-block">NiceAdmin</span>
+                                    <img src="/assets/images/logo.png" alt=""/>
+                                    <span class="d-none d-lg-block">{process.env.REACT_APP_PROJECT_NAME}</span>
                                 </a>
                             </div>
                             <div class="card mb-3">
@@ -21,18 +60,18 @@ const Login = () => {
                                         <h5 class="card-title text-center pb-0 fs-4">Login</h5>
                                         <p class="text-center small"></p>
                                     </div>
-                                    <form class="row g-3 needs-validation" novalidate>
+                                    <form class="row g-3 needs-validation" onSubmit={handleSubmit}>
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
+                                            <label for="username" class="form-label">Username</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control" id="yourUsername" required/>
-                                                <div class="invalid-feedback">Please enter your username.</div>
+                                                <input type="text" name="username" class="form-control" id="username" value={formData.username} onChange={handleChange}/>
+                                                <div class="invalid-feedback d-block">{errors.username}</div>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="yourPassword" required/>
-                                            <div class="invalid-feedback">Please enter your password!</div>
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" name="password" class="form-control" id="password" value={formData.password} onChange={handleChange}/>
+                                            <div class="invalid-feedback d-block">{errors.password}</div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-check">
@@ -44,7 +83,9 @@ const Login = () => {
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-12">
-                                            {/* <p class="small mb-0"><a href="/">Forgot Password</a></p> */}
+                                            <p class="small mb-0">
+                                                <a href="/forgot-password">Forgot Password</a>
+                                            </p>
                                         </div>
                                     </form>
                                 </div>
