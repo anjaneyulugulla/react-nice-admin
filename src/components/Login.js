@@ -44,7 +44,7 @@ const Login = () => {
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0"><a href="/"></a></p>
+                                            {/* <p class="small mb-0"><a href="/">Forgot Password</a></p> */}
                                         </div>
                                     </form>
                                 </div>

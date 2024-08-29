@@ -23,28 +23,28 @@ const ChangePassword = () => {
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">          
-                                    <div class="mt-lg-5" id="">
-                                        <form>
-                                            <div class="row mb-3">
-                                                <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                    <div class="col-lg-6 mt-lg-5" id="">
+                                        <form className="row g-3">
+                                            <div class="col-12">
+                                                <label for="currentPassword" class="form-label">Current Password</label>
                                                 <div class="col-md-8 col-lg-9">
                                                     <input name="password" type="password" class="form-control" id="currentPassword"/>
                                                 </div>
                                             </div>
-                                            <div class="row mb-3">
-                                                <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                                            <div class="col-12">
+                                                <label for="newPassword" class="form-label">New Password</label>
                                                 <div class="col-md-8 col-lg-9">
                                                     <input name="newpassword" type="password" class="form-control" id="newPassword"/>
                                                 </div>
                                             </div>
-                                            <div class="row mb-3">
-                                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                            <div class="col-12">
+                                                <label for="renewPassword" class="form-label">Re-enter New Password</label>
                                                 <div class="col-md-8 col-lg-9">
                                                     <input name="renewpassword" type="password" class="form-control" id="renewPassword"/>
                                                 </div>
                                             </div>
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-primary">Change Password</button>
+                                            <div class="text-left">
+                                                <button type="submit" class="btn btn-success btn-sm">Save</button>
                                             </div>
                                         </form>
                                     </div>
