@@ -13,6 +13,7 @@ import AddAdmin from './components/admin/Add';
 import Contact from './components/Contact';
 import SocialMedia from './components/SocialMedia';
 import Settings from './components/Settings';
+import { isAuthenticated } from './components/Auth';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -23,19 +24,19 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<Dashboard/>}></Route>
-        <Route path="/" element={<Dashboard/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/dashboard" element={<Dashboard/>}></Route>
-        <Route path="/404" element={<NoFound/>}></Route>
-        <Route path="/blank-page" element={<BlankPage/>}></Route>
-        <Route path="/table" element={<Table/>}></Route>
-        <Route path="/change-password" element={<ChangePassword/>}></Route>
-        <Route path="/contact" element={<Contact/>}></Route>
-        <Route path="/social-media" element={<SocialMedia/>}></Route>
-        <Route path="/settings" element={<Settings/>}></Route>
-        <Route path="/admin" element={<Admin/>}></Route>
-        <Route path="/admin/add" element={<AddAdmin/>}></Route>
+        <Route path="*" element={<Dashboard/>}/>
+        <Route exact path="/" element={<Dashboard/>}/>
+        <Route path="/login" element={isAuthenticated() ? <Navigate to="/dashboard" /> : <Login />}/>
+        <Route path="/dashboard" element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />}/>
+        <Route path="/404" element={<NoFound/>}/>
+        <Route path="/blank-page" element={<BlankPage/>}/>
+        <Route path="/table" element={<Table/>}/>
+        <Route path="/change-password" element={<ChangePassword/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/social-media" element={<SocialMedia/>}/>
+        <Route path="/settings" element={<Settings/>}/>
+        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/admin/add" element={<AddAdmin/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

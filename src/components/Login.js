@@ -1,6 +1,7 @@
 import React,{ useState,useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { authLogin } from "./Auth";
 
 const Login = () => {
 
@@ -37,6 +38,9 @@ const handleSubmit = (e) => {
     e.preventDefault();
     if(validate()) {
         console.log('From data submitted:',formData);
+        // const { token } = response.data;
+        const token  = "654C4DB3-3F68-4969-8ED2-80EA16B46EB0";
+        authLogin(token,1000 * 60 * 60);
         navigate('/dashboard');
     }
 };
