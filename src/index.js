@@ -8,7 +8,11 @@ import NoFound from './components/NoFound';
 import BlankPage from './components/BlankPage';
 import Table from './components/Table';
 import ChangePassword from './components/ChangePassword';
-import Admin from './components/Admin';
+import Admin from './components/admin/Admin';
+import AddAdmin from './components/admin/Add';
+import Contact from './components/Contact';
+import SocialMedia from './components/SocialMedia';
+import Settings from './components/Settings';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -27,7 +31,11 @@ root.render(
         <Route path="/blank-page" element={<BlankPage/>}></Route>
         <Route path="/table" element={<Table/>}></Route>
         <Route path="/change-password" element={<ChangePassword/>}></Route>
+        <Route path="/contact" element={<Contact/>}></Route>
+        <Route path="/social-media" element={<SocialMedia/>}></Route>
+        <Route path="/settings" element={<Settings/>}></Route>
         <Route path="/admin" element={<Admin/>}></Route>
+        <Route path="/admin/add" element={<AddAdmin/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

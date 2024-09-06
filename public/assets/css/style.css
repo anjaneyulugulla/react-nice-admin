@@ -61,8 +61,8 @@ h6 {
 }
 
 .pagetitle h1 {
-  font-size: 24px;
-  margin-bottom: 0;
+  font-size: 20px;
+  margin-bottom: 2px;
   font-weight: 600;
   color: #012970;
 }
@@ -305,7 +305,7 @@ h6 {
 
 /* Breadcrumbs */
 .breadcrumb {
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Nunito", sans-serif;
   color: #899bbd;
   font-weight: 600;

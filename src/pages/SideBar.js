@@ -31,7 +31,7 @@ const SideBar = () => {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link collapsed" href="/social_media">
+                        <a class="nav-link collapsed" href="/social-media">
                             <i class="bi bi-card-list"></i>
                             <span>Social Media</span>
                         </a>
