@@ -1,0 +1,9 @@
+.custom-toast {
+    width: 600px; /* Set the width to your desired value */
+    max-width: 100%; /* Ensure it doesn't exceed container width */
+  }
+  .Toastify__toast-container {
+    width: 500px !important;
+    max-width: 100%;
+  }
+  

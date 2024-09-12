@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import SocialMedia from './components/SocialMedia';
 import Settings from './components/Settings';
 import { isAuthenticated } from './components/Auth';
+import Logout from './components/Logout';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -27,13 +28,15 @@ root.render(
         <Route path="*" element={<Dashboard/>}/>
         <Route exact path="/" element={<Dashboard/>}/>
         <Route path="/login" element={isAuthenticated() ? <Navigate to="/dashboard" /> : <Login />}/>
-        <Route path="/dashboard" element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />}/>
+        {/* <Route path="/dashboard" element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />}/> */}
+        <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/404" element={<NoFound/>}/>
         <Route path="/blank-page" element={<BlankPage/>}/>
         <Route path="/table" element={<Table/>}/>
         <Route path="/change-password" element={<ChangePassword/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/social-media" element={<SocialMedia/>}/>
+        <Route path="/logout" element={<Logout/>}/>
         <Route path="/settings" element={<Settings/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/add" element={<AddAdmin/>}/>

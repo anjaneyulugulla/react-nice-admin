@@ -5,6 +5,7 @@ import Footer from "../pages/Footer";
 import { authLogout } from "./Auth";
 
 const Dashboard = () => {
+    const name  = localStorage.getItem('name')
     return(
         <div>
             <Header/>
