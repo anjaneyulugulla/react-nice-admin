@@ -2,16 +2,17 @@ import React from "react";
 
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
-import { authLogout } from "./Auth";
+import { isAuthenticated } from "./Auth";
 
 const Dashboard = () => {
-    const name  = localStorage.getItem('name')
+    const token = isAuthenticated();
+
     return(
         <div>
             <Header/>
             <main id="main" class="main">
                 <div class="pagetitle">
-                    <h1>Dashboard</h1>
+                    <h1>Dashboard----{token}</h1>
                     <nav>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/index.html">Home</a></li>

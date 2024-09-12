@@ -1,18 +1,16 @@
 import React,{ useState,useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { authLogin,isAuthenticated } from "./Auth";
 
 const Login = () => {
-    
 const navigate = useNavigate();  
-if(isAuthenticated()){
-    navigate('/dashboard');
-}
 const [formData,setFormData] = useState({
     username : '',
     password : ''
 });
+useEffect (() => {
+    handleLogin();
+},[]);
 
 const [errors,setErrors] = useState({});
 
@@ -42,11 +40,14 @@ const handleSubmit = (e) => {
     if(validate()) {
         console.log('From data submitted:',formData);
         // const { token } = response.data;
-        const token  = "654C4DB3-3F68-4969-8ED2-80EA16B46EB0";
-        authLogin(token,{'name':"Admin"},1000 * 60 * 60);
-        navigate('/dashboard');
     }
 };
+const handleLogin = () => {
+    const token  = "654C4DB3-3F68-4969-8ED2-80EA16B46EB0";
+    authLogin(token,{'name':"Admin"},1000 * 60 * 60);
+    navigate('/dashboard');
+};
+
 return(
 <div>        
     <main>
