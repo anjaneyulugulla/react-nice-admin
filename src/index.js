@@ -27,9 +27,13 @@ root.render(
       <Routes>
         <Route path="*" element={<Dashboard/>}/>
         <Route exact path="/" element={<Dashboard/>}/>
-        <Route path="/login" element={isAuthenticated() ? <Navigate to="/dashboard" /> : <Login />}/>
-        {/* <Route path="/dashboard" element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />}/> */}
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        
+        <Route path="/login" element={isAuthenticated() ? <Navigate to="/dashboard"/> : <Login />}/>
+        <Route path="/dashboard" element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login"/>}/>
+        
+        {/* <Route path="/login" element={<Login/>}/> */}
+        {/* <Route path="/dashboard" element={<Dashboard/>}/> */}
+
         <Route path="/404" element={<NoFound/>}/>
         <Route path="/blank-page" element={<BlankPage/>}/>
         <Route path="/table" element={<Table/>}/>

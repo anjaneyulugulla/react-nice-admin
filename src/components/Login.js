@@ -8,9 +8,13 @@ const [formData,setFormData] = useState({
     username : '',
     password : ''
 });
-useEffect (() => {
-    handleLogin();
-},[]);
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+// useEffect (() => {
+//     if(isLoggedIn){
+//         navigate('/dashboard');   
+//     }
+// },[]);
 
 const [errors,setErrors] = useState({});
 
@@ -30,7 +34,7 @@ const validate = () => {
     if(!formData.password) {
         newErrors.password = 'Please enter your password.';
     }
-
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
 };
@@ -39,14 +43,16 @@ const handleSubmit = (e) => {
     e.preventDefault();
     if(validate()) {
         console.log('From data submitted:',formData);
+        const token  = "654C4DB3-3F68-4969-8ED2-80EA16B46EB0";
+        authLogin(token,{'name':"Admin"},1000 * 60 * 60);
+        setIsLoggedIn(true);
         // const { token } = response.data;
     }
 };
-const handleLogin = () => {
-    const token  = "654C4DB3-3F68-4969-8ED2-80EA16B46EB0";
-    authLogin(token,{'name':"Admin"},1000 * 60 * 60);
-    navigate('/dashboard');
-};
+
+// const handleLogin = () => {
+//     navigate('/dashboard');
+// };
 
 return(
 <div>        
