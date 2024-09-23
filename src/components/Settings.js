@@ -194,7 +194,7 @@ const Settings = () => {
                                             </div>
                                             <div className="col-md-6 mb-2"></div>
                                             <div className="col-md-6">
-                                                <button type="submit" className="btn btn-success btn-sm mt-3">Save</button>
+                                                <button type="submit" className="btn btn-success btn-sm col-md-2">Submit</button>
                                             </div>
                                         </div>
                                     </form>

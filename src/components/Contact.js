@@ -1,9 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
+import { toastSuccess,toastInfo } from "../pages/Toast";
+
 
 const Contact = () => {
+    const navigate = useNavigate();  
+    const [formData, setFormData] = useState({
+        
+    });
+    const [errors,setErrors] = useState({});
+    const handleChange = (e) => {
+        const { name , value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(validate()) {
+            console.log('From data submitted:',formData);
+            toastInfo('Updated successfully..!');
+            navigate('/contact');
+        }
+    }
+    const validate = () =>{
+        const newErrors = {};
+        if(!formData.name) {
+            newErrors.name = 'Please enter name.';
+        }
+        if(!formData.email) {
+            newErrors.email = 'Please enter email.';
+        }
+        if(!formData.subject) {
+            newErrors.subject = 'Please enter subject.';
+        }
+        if(!formData.message) {
+            newErrors.message = 'Please enter message.';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
+
     return(
         <div>
             <Header/>            
@@ -53,19 +96,24 @@ const Contact = () => {
                         </div>
                         <div class="col-xl-6">
                             <div class="card p-4">
-                                <form action="forms/contact.php" method="post" class="php-email-form">
+                            <ToastContainer />
+                                <form method="post" class="php-email-form" enctype="multipart/form-data" onSubmit={handleSubmit}>
                                     <div class="row gy-4">
                                         <div class="col-md-6">
-                                            <input type="text" name="name" class="form-control" placeholder="Your Name" required/>
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" value={formData.name} onChange={handleChange}/>
+                                            <div class="invalid-feedback d-block">{errors.name}</div>
                                         </div>
                                         <div class="col-md-6 ">
-                                            <input type="email" class="form-control" name="email" placeholder="Your Email" required/>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" value={formData.email} onChange={handleChange}/>
+                                            <div class="invalid-feedback d-block">{errors.email}</div>
                                         </div>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" name="subject" placeholder="Subject" required/>
+                                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" value={formData.subject} onChange={handleChange}/>
+                                            <div class="invalid-feedback d-block">{errors.subject}</div>
                                         </div>
                                         <div class="col-md-12">
-                                            <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                            <textarea class="form-control" name="message" id="message" rows="6" placeholder="Message" onChange={handleChange}>{formData.message}</textarea>
+                                            <div class="invalid-feedback d-block">{errors.message}</div>
                                         </div>
                                         <div class="col-md-12 text-center">
                                             <div class="loading">Loading</div>

@@ -1,12 +1,27 @@
-import React from "react";
-
+import React, {  useEffect, useState } from "react";
+import * as XLSX from 'xlsx';
 import Header from "../../pages/Header";
 import Footer from "../../pages/Footer";
+import DataAdminComponent from "../DataAdminComponent";
+import AdminExportExcel from "../AdminExportExcel"
+import initialData from "../../services/admin.json";
 
 const Admin = () => {
-    const inlineStyle = {
-        marginRight: '18px',
+    const inlineStyle = {marginRight: '18px'};
+    const inlineStyle2 = {marginRight: '12px',border:"1px solid"};
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    }
+    const getFilteredData = () => {
+        if (!searchTerm) return initialData;
+        return initialData.filter((item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
       };
+      console.log(getFilteredData(),"sdfasdfasdf");
+
     return(
         <div>
             <Header/>            
@@ -28,9 +43,11 @@ const Admin = () => {
                                     <div className="row">
                                         <div className="col-md-6"></div>
                                         <div className="col-md-6">
-                                            <a href="/admin/add" className="btn btn-sm btn-success float-end mb-2 mt-2" style={inlineStyle}>
-                                            <i className="bi bi-plus-circle-fill"></i> Add
+                                            <a href="/admin/add" className="btn btn-sm btn-success float-end mt-2" style={inlineStyle}>
+                                                <i className="bi bi-plus-circle-fill"></i> Add
                                             </a>
+                                            <AdminExportExcel/>
+                                            <input type="text" id="searchInput" name="searchInput" value={searchTerm} onChange={handleSearchChange} placeholder="Search" className="float-end form-control-sm mt-2" style={inlineStyle2}/>
                                         </div>
                                     </div>
                                 </div>
@@ -47,189 +64,7 @@ const Admin = () => {
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>image</td>
-                                                <td>Jhone</td>
-                                                <td>Jhone@fmIL.CON</td>
-                                                <td>Manager</td>
-                                                <td>Active</td>
-                                                <td>
-                                                    <a className="p-1" href="/admin/edit"><i className="bi bi-pencil-square"></i></a>
-                                                    <a href="/admin/delete"><i className="bi bi-trash-fill"></i></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <DataAdminComponent data={getFilteredData()}/>
                                     </table>
                                 </div>
                             </div>
