@@ -15,6 +15,7 @@ import SocialMedia from './components/SocialMedia';
 import Settings from './components/Settings';
 import { isAuthenticated } from './components/Auth';
 import Logout from './components/Logout';
+import AdminMenu from './components/AdminMenu';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -44,6 +45,7 @@ root.render(
         <Route path="/settings" element={<Settings/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/add" element={<AddAdmin/>}/>
+        <Route path='/admin-menu' element={<AdminMenu/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
