@@ -20,7 +20,7 @@ const SideBar = () => {
                         </a>
                         <ul id="admin-menu" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <a href="/admin-menu">
+                                <a href="/admin-menu" className="active">
                                     <i class="bi bi-circle"></i>
                                     <span>Admin Menu</span>
                                 </a>

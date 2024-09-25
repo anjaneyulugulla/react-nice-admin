@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
-import { toastSuccess,toastInfo } from "../pages/Toast";
+import { toastInfo } from "../pages/Toast";
 
 
 const Contact = () => {

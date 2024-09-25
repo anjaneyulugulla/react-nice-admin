@@ -9,6 +9,13 @@ const AdminMenu = () => {
     useEffect(() => {
         setData(jsonMenu);
     },[]);
+    const formatString = (str) => {
+        return str
+          .split('_')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
+          .join(' ');
+      };
+
     return(
         <div>
             <Header/>            
@@ -27,14 +34,21 @@ const AdminMenu = () => {
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body border border-2">
-                                    <h5 class="card-title"></h5>
+                                    <h5 class="card-title"> </h5>
                                     <div className="col-md-12">
                                         <form className="row g-3" method="POST" enctype="multipart/form-data">
                                             <div className="row">
-                                                <div class="col-md-8 mb-2">
-                                                    <label for="name" class="form-label">Name</label>
-                                                    <input type="text" class="form-control form-control-sm" id="site_name" name="site_name"/>
+                                                {data.map((item) =>(
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="name" class="form-label">{formatString(item.menu_display)}</label>
+                                                    <input type="text" class="form-control form-control-sm" id={item.menu_display} name={item.menu_display} value={item.menu_url}/>
                                                     <div class="invalid-feedback d-block"></div>
+                                                </div>
+                                                ))}
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-md-5 mt-2">
+                                                    <button type="submit" name="submit" id="submit" className="btn btn-success btn-sm col-xxl-3">Submit</button>
                                                 </div>
                                             </div>
                                         </form>

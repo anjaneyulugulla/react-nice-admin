@@ -1,9 +1,9 @@
 import React,{ useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { authLogin,isAuthenticated } from "./Auth";
+import { authLogin } from "./Auth";
 
 const Login = () => {
-const navigate = useNavigate();  
+// const navigate = useNavigate();  
 const [formData,setFormData] = useState({
     username : '',
     password : ''
