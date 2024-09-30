@@ -15,7 +15,6 @@ const DataAdminComponent = ({ searchTerm }) => {
             item.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
     };
-    
     const filteredData = getFilteredData();
 
     return(
