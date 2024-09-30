@@ -64,7 +64,7 @@ const Admin = () => {
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <DataAdminComponent data={getFilteredData()}/>
+                                        <DataAdminComponent/>
                                     </table>
                                 </div>
                             </div>

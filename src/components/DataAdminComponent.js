@@ -22,7 +22,7 @@ const DataAdminComponent = ({ searchTerm }) => {
         <tbody>
             {filteredData.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}-{searchTerm}</td>
+              <td>{item.id}</td>
               <td>{item.image}</td>
               <td>{item.name}</td>
               <td>{item.email}</td>

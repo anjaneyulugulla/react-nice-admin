@@ -49,6 +49,14 @@ const AddAdmin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(validate()) {
+            // console.log(e.target[4],'target');
+            const fileInput = e.target[4]; // Access the file input
+            const file = fileInput.files[0];
+
+            if (file) {
+                console.log(file,'filess');
+                //formData.append('image', file);
+            }
             console.log('From data submitted:',formData);
             toastSuccess('Admin added successfully..!');
             navigate('/admin/add');
@@ -97,6 +105,7 @@ const AddAdmin = () => {
                                                 <div className="col-md-6">
                                                 <label for="group" class="form-label">Group</label>
                                                     <select class="form-control form-select form-select-sm mb-3" id="group" name="group" onChange={handleChange}>
+                                                        <option value=''>Select--</option>
                                                         <option value={'admin'}>Admin</option>
                                                         <option value={'manager'}>Manager</option>
                                                         <option value={'generalmanager'}>GM</option>
@@ -110,9 +119,11 @@ const AddAdmin = () => {
                                                 <div className="col-md-6">
                                                     <label for="status" class="form-label">Status</label>
                                                     <select class="form-control form-select form-select-sm mb-3" id="status" name="status" onChange={handleChange}>
+                                                        <option value=''>Select--</option>
                                                         <option value={'active'}>Active</option>
                                                         <option value={'inactive'}>Inactive</option>
                                                     </select>
+                                                    <div class="invalid-feedback d-block">{errors.status}</div>
                                                 </div>
                                                 <div className="col-md-6">
                                                     <button type="submit" className="btn btn-success btn-sm col-md-3">Save</button>
