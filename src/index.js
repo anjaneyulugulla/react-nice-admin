@@ -10,6 +10,7 @@ import Table from './components/Table';
 import ChangePassword from './components/ChangePassword';
 import Admin from './components/admin/Admin';
 import AddAdmin from './components/admin/AddAdmin';
+import UpdateAdmin from './components/admin/UpdateAdmin';
 import Contact from './components/Contact';
 import SocialMedia from './components/SocialMedia';
 import Settings from './components/Settings';
@@ -45,6 +46,7 @@ root.render(
         <Route path="/settings" element={<Settings/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/add" element={<AddAdmin/>}/>
+        <Route path="/admin/edit/:id" element={<UpdateAdmin/>}/>
         <Route path='/admin-menu' element={<AdminMenu/>}/>
       </Routes>
     </BrowserRouter>

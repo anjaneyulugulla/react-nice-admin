@@ -1,21 +1,31 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate,useParams } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
 import Header from "../../pages/Header";
 import Footer from "../../pages/Footer";
 
 import { toastSuccess,toastError } from "../../pages/Toast";
-import { postData } from "../../services/apiService"
+import { postData,fetchData } from "../../services/apiService"
 
-const AddAdmin = () => {
+const UpdateAdmin = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        const fetchedData = async () => {
+            const result = await fetchData('admin',{id:id});
+            const { data } = result;    
+            setData(data.data);
+        };
+        fetchedData();
+    },[]);
     const [formData,setFormData] = useState({
-        name :'',
-        email :'',
-        username :'',
-        status :'',
-        group :''
+        name : data.name,
+        email : data.email,
+        username : data.username,
+        status : data.status,
+        group : data.group_id
     });
     const [ errors,setErrors ] = useState({});
     const handleChange = (e) => {
@@ -97,12 +107,12 @@ const AddAdmin = () => {
             <Header/>            
             <main id="main" class="main">
                 <div class="pagetitle">
-                    <h1>Add Admin</h1>
+                    <h1>Edit Admin</h1>
                     <nav>
                         <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
-                        <li class="breadcrumb-item active">Add</li>
+                        <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </nav>
                 </div>
@@ -115,6 +125,7 @@ const AddAdmin = () => {
                                     <div className="col-md-8">
                                         <ToastContainer />
                                         <form className="row g-3" method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
+                                            <input type="hidden" id="id" name="id" value={data.id}/>
                                             <div className="row">
                                                 <div class="col-md-6">
                                                     <label for="name" class="form-label">Name</label>
@@ -171,4 +182,4 @@ const AddAdmin = () => {
     )
 };
 
-export default AddAdmin;
+export default UpdateAdmin;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import jsonData from "../services/admin.json";
 import { fetchData } from "../services/apiService"
 
-const DataAdminComponent = ({ searchTerm }) => {
+const DataAdminComponent = ({ searchTerm , onSearchChange }) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         const fetchedData = async () => {
@@ -33,10 +33,10 @@ const DataAdminComponent = ({ searchTerm }) => {
               <td>{item.group_id}</td>
               <td>{item.status}</td>
               <td>
-                <a className="p-1" href="/admin/edit">
+                <a className="p-1" href={`/admin/edit/${item.id}`}>
                     <i className="bi bi-pencil-square"></i>
                 </a>
-                <a href="/admin/delete">
+                <a href={`/admin/delete/${item.id}`}>
                     <i className="bi bi-trash-fill"></i>
                 </a>
             </td>

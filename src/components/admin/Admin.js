@@ -56,7 +56,7 @@ const Admin = () => {
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <DataAdminComponent/>
+                                        <DataAdminComponent searchTerm={searchTerm} onSearchChange={setSearchTerm} />
                                     </table>
                                 </div>
                             </div>
