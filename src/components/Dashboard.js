@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from 'react-toastify';
 
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
@@ -21,7 +22,7 @@ const Dashboard = () => {
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="row">
-
+                            <ToastContainer/>
                                 <div class="col-xxl-3 col-md-6">
                                     <div class="card info-card sales-card">
                                         {/* <div class="filter">

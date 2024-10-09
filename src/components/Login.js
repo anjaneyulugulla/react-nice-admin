@@ -1,20 +1,18 @@
-import React,{ useState,useEffect } from "react";
+import React,{ useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authLogin } from "./Auth";
+import { postData } from "../services/apiService";
+import { ToastContainer } from 'react-toastify';
+import { toastSuccess,toastError } from "../pages/Toast";
+
 
 const Login = () => {
-// const navigate = useNavigate();  
+
+const navigate = useNavigate();  
 const [formData,setFormData] = useState({
     username : '',
     password : ''
 });
-const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-// useEffect (() => {
-//     if(isLoggedIn){
-//         navigate('/dashboard');   
-//     }
-// },[]);
 
 const [errors,setErrors] = useState({});
 
@@ -39,14 +37,22 @@ const validate = () => {
     return Object.keys(newErrors).length === 0;
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     if(validate()) {
         console.log('From data submitted:',formData);
-        const token  = "654C4DB3-3F68-4969-8ED2-80EA16B46EB0";
-        authLogin(token,{'name':"Admin"},1000 * 60 * 60);
-        setIsLoggedIn(true);
-        // const { token } = response.data;
+        const result = await postData('adminlogin',{'username':formData.username,'password':formData.password});
+        const { data } = result;
+        
+        if(!data.success){
+            navigate('/login');
+            toastError(data.message);
+        } else {
+            const token  = data.token;
+            authLogin(token,{'name':"Admin"},1000 * 60 * 60);
+            navigate('/dashboard');
+            toastSuccess(data.message);
+        }
     }
 };
 
@@ -73,6 +79,7 @@ return(
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Login</h5>
                                         <p class="text-center small"></p>
+                                        <ToastContainer/>
                                     </div>
                                     <form class="row g-3 needs-validation" onSubmit={handleSubmit}>
                                         <div class="col-12">

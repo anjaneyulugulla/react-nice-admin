@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import jsonData from "../services/admin.json";
+import { fetchData } from "../services/apiService"
 
 const DataAdminComponent = ({ searchTerm }) => {
     const [data, setData] = useState([]);
     useEffect(() => {
-        setData(jsonData);
-
+        const fetchedData = async () => {
+            const result = await fetchData('getadmin',{});
+            const { data } = result;    
+            setData(data.data);
+        };
+        fetchedData();
     },[]);
     const getFilteredData = () => {
         if(!searchTerm) 

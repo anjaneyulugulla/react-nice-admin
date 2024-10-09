@@ -16,7 +16,7 @@ export const toastSuccess = (messsage) => {
 }
 
 export const toastWarning = (messsage) => {
-    toast.success(messsage,{
+    toast.warn(messsage,{
         className: 'custom-toast',
         autoClose: 3000,
         hideProgressBar: false,
@@ -30,7 +30,7 @@ export const toastWarning = (messsage) => {
 }
 
 export const toastError = (messsage) => {
-    toast.success(messsage,{
+    toast.error(messsage,{
         className: 'custom-toast',
         autoClose: 3000,
         hideProgressBar: false,
