@@ -11,22 +11,15 @@ import { postData,fetchData } from "../../services/apiService"
 const UpdateAdmin = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
+    const [formData,setFormData] = useState([]);
     useEffect(() => {
         const fetchedData = async () => {
             const result = await fetchData('admin',{id:id});
             const { data } = result;    
-            setData(data.data);
+            setFormData(data.data);
         };
         fetchedData();
     },[]);
-    const [formData,setFormData] = useState({
-        name : data.name,
-        email : data.email,
-        username : data.username,
-        status : data.status,
-        group : data.group_id
-    });
     const [ errors,setErrors ] = useState({});
     const handleChange = (e) => {
         const { name , value } = e.target;
@@ -49,8 +42,8 @@ const UpdateAdmin = () => {
         if(!formData.username) {
             newErrors.username = 'Please enter username.';
         }
-        if(!formData.group) {
-            newErrors.group = 'Please enter group.';
+        if(!formData.group_id) {
+            newErrors.group_id = 'Please enter group.';
         }
         if(!formData.status) {
             newErrors.status = 'Please enter status.';
@@ -63,37 +56,36 @@ const UpdateAdmin = () => {
         e.preventDefault();
         if(validate()) {
             // console.log(e.target[4],'target');
-            const fileInput = e.target[4]; // Access the file input
-            const file = fileInput.files[0];
-            if (file) {
-                console.log(file,'filess');
-                //formData.append('image', file);
-            }
+            //const fileInput = e.target[4]; // Access the file input
+            // const file = fileInput.files[0];
+            // if (file) {
+            //     console.log(file,'filess');
+            //     //formData.append('image', file);
+            // }
             console.log('From data submitted:',formData);
             const inputParams = {
+                id:formData.id,
                 name:formData.name,
                 username:formData.username,
                 password:"3214789",
                 email:formData.email,
-                group_id:formData.group_id,
-                image:"",
-                verification_code:"43634",
+                group_id:formData.group_id,                
                 status:formData.status
             };
-            const result = await postData('addadmin',inputParams);
+            const result = await postData('updateadmin',inputParams);
             const { data } = result;
         
             if(!data.success) {
                 toastError(data.message);
                 setTimeout(() => {
-                    navigate('/admin/add');
+                    navigate(`/admin/edit/${formData.id}`);
                   }, 1000);
                 
             } else {
                 toastSuccess(data.message);
                 setTimeout(() => {
                     navigate('/admin');
-                  }, 1000);
+                  }, 500);
             }
         }
     }
@@ -125,7 +117,7 @@ const UpdateAdmin = () => {
                                     <div className="col-md-8">
                                         <ToastContainer />
                                         <form className="row g-3" method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
-                                            <input type="hidden" id="id" name="id" value={data.id}/>
+                                            <input type="hidden" id="id" name="id" value={formData.id}/>
                                             <div className="row">
                                                 <div class="col-md-6">
                                                     <label for="name" class="form-label">Name</label>
@@ -143,12 +135,12 @@ const UpdateAdmin = () => {
                                                     <div class="invalid-feedback d-block">{errors.username}</div>
                                                 </div>
                                                 <div className="col-md-6">
-                                                <label for="group" class="form-label">Group</label>
-                                                    <select class="form-control form-select form-select-sm mb-3" id="group" name="group" onChange={handleChange}>
+                                                <label for="group_id" class="form-label">Group</label>
+                                                    <select class="form-control form-select form-select-sm mb-3" id="group_id" name="group_id" onChange={handleChange} value={formData.group_id}>
                                                         <option value=''>Select--</option>
-                                                        <option value={'admin'}>Admin</option>
-                                                        <option value={'manager'}>Manager</option>
-                                                        <option value={'generalmanager'}>GM</option>
+                                                        <option value={1} >Admin</option>
+                                                        <option value={2}>Manager</option>
+                                                        <option value={3}>GM</option>
                                                     </select>
                                                     <div class="invalid-feedback d-block">{errors.group}</div>
                                                 </div>
@@ -158,7 +150,7 @@ const UpdateAdmin = () => {
                                                 </div>
                                                 <div className="col-md-6">
                                                     <label for="status" class="form-label">Status</label>
-                                                    <select class="form-control form-select form-select-sm mb-3" id="status" name="status" onChange={handleChange}>
+                                                    <select class="form-control form-select form-select-sm mb-3" id="status" name="status" onChange={handleChange} value={formData.status}>
                                                         <option value=''>Select--</option>
                                                         <option value={'active'}>Active</option>
                                                         <option value={'inactive'}>Inactive</option>

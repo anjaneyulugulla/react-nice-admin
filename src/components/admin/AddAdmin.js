@@ -65,7 +65,7 @@ const AddAdmin = () => {
                 username:formData.username,
                 password:"3214789",
                 email:formData.email,
-                group_id:formData.group_id,
+                group_id:formData.group,
                 image:"",
                 verification_code:"43634",
                 status:formData.status
@@ -83,7 +83,7 @@ const AddAdmin = () => {
                 toastSuccess(data.message);
                 setTimeout(() => {
                     navigate('/admin');
-                  }, 1000);
+                  }, 500);
             }
         }
     }
@@ -135,9 +135,9 @@ const AddAdmin = () => {
                                                 <label for="group" class="form-label">Group</label>
                                                     <select class="form-control form-select form-select-sm mb-3" id="group" name="group" onChange={handleChange}>
                                                         <option value=''>Select--</option>
-                                                        <option value={'admin'}>Admin</option>
-                                                        <option value={'manager'}>Manager</option>
-                                                        <option value={'generalmanager'}>GM</option>
+                                                        <option value={1}>Admin</option>
+                                                        <option value={2}>Manager</option>
+                                                        <option value={3}>GM</option>
                                                     </select>
                                                     <div class="invalid-feedback d-block">{errors.group}</div>
                                                 </div>

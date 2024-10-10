@@ -45,13 +45,17 @@ const handleSubmit = async (e) => {
         const { data } = result;
         
         if(!data.success){
-            navigate('/login');
             toastError(data.message);
+            setTimeout(() => {
+                navigate('/login');
+              }, 1000);
         } else {
             const token  = data.token;
             authLogin(token,{'name':"Admin"},1000 * 60 * 60);
-            navigate('/dashboard');
             toastSuccess(data.message);
+            setTimeout(() => {
+                navigate('/dashboard');
+              }, 500);
         }
     }
 };

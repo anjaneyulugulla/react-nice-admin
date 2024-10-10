@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import jsonData from "../services/admin.json";
 import { fetchData } from "../services/apiService"
+import { confirmDialog } from "../pages/Sweetalert2";
 
 const DataAdminComponent = ({ searchTerm , onSearchChange }) => {
     const [data, setData] = useState([]);
@@ -21,6 +22,9 @@ const DataAdminComponent = ({ searchTerm , onSearchChange }) => {
         );
     };
     const filteredData = getFilteredData();
+    const handleSweetAlert = (id) => {
+        confirmDialog({id:id});
+    }
 
     return(
         <tbody>
@@ -36,8 +40,8 @@ const DataAdminComponent = ({ searchTerm , onSearchChange }) => {
                 <a className="p-1" href={`/admin/edit/${item.id}`}>
                     <i className="bi bi-pencil-square"></i>
                 </a>
-                <a href={`/admin/delete/${item.id}`}>
-                    <i className="bi bi-trash-fill"></i>
+                <a data-id ={`${item.id}`} onClick={() => handleSweetAlert(item.id)}>
+                    <i className="bi bi-trash-fill text-danger"></i>
                 </a>
             </td>
             </tr>

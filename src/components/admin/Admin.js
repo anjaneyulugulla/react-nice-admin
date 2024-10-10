@@ -3,7 +3,7 @@ import * as XLSX from 'xlsx';
 import Header from "../../pages/Header";
 import Footer from "../../pages/Footer";
 import DataAdminComponent from "../DataAdminComponent";
-import AdminExportExcel from "../AdminExportExcel"
+import AdminExportExcel from "../AdminExportExcel";
 
 const Admin = () => {
     const inlineStyle = {marginRight: '18px'};
@@ -13,7 +13,7 @@ const Admin = () => {
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
     }
-    
+
     return(
         <div>
             <Header/>            

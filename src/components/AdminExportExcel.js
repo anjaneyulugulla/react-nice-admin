@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect ,useState } from 'react';
 import * as XLSX from 'xlsx';
-import jsonData from "../services/admin.json";
+import { fetchData } from '../services/apiService';
 
 const ExportExcel = () => {
 const inlineStyle = {marginRight: '5px'};
-  const data = jsonData;
-
+const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchedData = async () => {
+        const result = await fetchData('getadmin',{});
+        const { data } = result;    
+        setData(data.data);
+    };
+    fetchedData();
+},[]);
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
