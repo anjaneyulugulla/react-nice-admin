@@ -55,14 +55,24 @@ const UpdateAdmin = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(validate()) {
-            // console.log(e.target[4],'target');
-            //const fileInput = e.target[4]; // Access the file input
-            // const file = fileInput.files[0];
-            // if (file) {
-            //     console.log(file,'filess');
-            //     //formData.append('image', file);
-            // }
-            console.log('From data submitted:',formData);
+            const fileInput = e.target[5];
+            const uploadedFile = fileInput.files[0];
+            formData.image = "";
+            if (uploadedFile) {
+                const formImageData = new FormData();
+                formImageData.append("file", uploadedFile);
+                // console.log(file,'filess');
+                const resultData = await fetch("http://localhost:5551/api/upload/profile", { 
+                    method: "POST",
+                    body: formImageData,
+                });
+                const resp = await resultData.json();
+                console.log(resp,"Image uploaded");
+                
+                //await postData('upload/profile',{user_id:formData.id,file:file});
+                // formData.image = file;
+            }
+            // console.log('From data submitted:',formData);
             const inputParams = {
                 id:formData.id,
                 name:formData.name,
@@ -70,7 +80,7 @@ const UpdateAdmin = () => {
                 password:"3214789",
                 email:formData.email,
                 group_id:formData.group_id,                
-                status:formData.status
+                status:formData.status,
             };
             const result = await postData('updateadmin',inputParams);
             const { data } = result;
@@ -84,7 +94,8 @@ const UpdateAdmin = () => {
             } else {
                 toastSuccess(data.message);
                 setTimeout(() => {
-                    navigate('/admin');
+                     navigate('/admin');
+                    //navigate(`/admin/edit/${formData.id}`);
                   }, 500);
             }
         }

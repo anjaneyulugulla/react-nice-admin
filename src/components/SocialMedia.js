@@ -1,24 +1,32 @@
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
-
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
-import { toastSuccess } from "../pages/Toast";
+import { toastSuccess,toastError } from "../pages/Toast";
+import { postData,fetchData } from "../services/apiService";
 
 const SocialMedia = () => {
     const navigate = useNavigate();  
-    const [formData,setFormData] = useState({
-        facebook:'',
-        twitter:'',
-        google:'',
-        youtube:'',
-        linkedin:'',
-        instagram:'',
-        pinterest:'' 
-    });
-
+    // const [formData,setFormData] = useState({
+    //     facebook:'',
+    //     twitter:'',
+    //     google:'',
+    //     youtube:'',
+    //     linkedin:'',
+    //     instagram:'',
+    //     pinterest:'' 
+    // });
+    const [formData,setFormData] = useState([]);
+    useEffect(() => {
+        const fetchedData = async () => {
+            const result = await fetchData('getmedia',{});
+            const { data } = result;    
+            setFormData(data.data);
+        };
+        fetchedData();
+    },[]);
     const [errors,setErrors] = useState({});
     const handleChange = (e) => {
         const { name , value } = e.target;
@@ -56,12 +64,35 @@ const SocialMedia = () => {
         return Object.keys(newErrors).length === 0;
     };
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(validate()) {
             console.log('From data submitted:',formData);
-            toastSuccess('Updated successfully..!');
-            navigate('/social-media');
+            const inputParams = {
+                id:formData.id,
+                facebook:formData.facebook,
+                twitter:formData.twitter,
+                google:formData.google,
+                youtube:formData.youtube,
+                linkedin:formData.linkedin,
+                instagram:formData.instagram,
+                pinterest: formData.pinterest
+            };
+            const result = await postData('updatemedia',inputParams);
+            const { data } = result;
+        
+            if(!data.success) {
+                toastError(data.message);
+                setTimeout(() => {
+                    navigate('/social-media');
+                  }, 1000);
+                
+            } else {
+                toastSuccess(data.message);
+                setTimeout(() => {
+                    navigate('/social-media');
+                  }, 500);
+            }
         }
     };
     return(
@@ -86,6 +117,7 @@ const SocialMedia = () => {
                                 <div className="col-md-10">
                                     <ToastContainer />
                                     <form className="row g-3" method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
+                                        <input type="hidden" id="id" name="id" value={formData.id}/>
                                         <div className="row">
                                             <div class="col-md-10">
                                                 <label for="facebook" class="form-label">Facebook</label>
